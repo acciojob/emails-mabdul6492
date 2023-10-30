@@ -1,4 +1,5 @@
 name: Acciojob Tests
+run: mvn clean install -e -X
 
 on:
  push:
@@ -8,5 +9,3 @@ jobs:
   calling-acciojob-main-action:
     uses: acciojob/acciojob-tests-action/.github/workflows/main-action.yml@main
     secrets: inherit
-
-run: mvn clean install -e -X
