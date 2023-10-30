@@ -8,3 +8,7 @@ jobs:
   calling-acciojob-main-action:
     uses: acciojob/acciojob-tests-action/.github/workflows/main-action.yml@main
     secrets: inherit
+
+    steps:
+      - name: Build with Maven
+        run: mvn clean install -e -X
