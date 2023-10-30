@@ -1,5 +1,4 @@
 name: Acciojob Tests
-run: mvn clean install -e -X
 
 on:
  push:
