@@ -5,6 +5,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class Workspace extends Gmail{
 
@@ -31,16 +32,16 @@ public class Workspace extends Gmail{
 
         if(calendar.isEmpty()) return 0;
 
-        calendar.sort((a, b) -> {
-            if(a.getStartTime().equals(b.getStartTime())) return a.getEndTime().compareTo(b.getEndTime());
-            return a.getStartTime().compareTo(b.getStartTime());
-        });
+        calendar.sort((a, b) -> (a.getStartTime().compareTo(b.getStartTime())));
+//        calendar.sort(Comparator.comparing(Meeting::getStartTime));
 
         int count = 1;
         LocalTime end = calendar.get(0).getEndTime();
         for(Meeting meeting: calendar){
             if(meeting.getStartTime().isAfter(end)){
                 count++;
+                end = meeting.getEndTime();
+            } else if(meeting.getEndTime().isBefore(end)){
                 end = meeting.getEndTime();
             }
         }
